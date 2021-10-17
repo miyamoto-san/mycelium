@@ -74,6 +74,8 @@ impl Worker {
   }
 }
 
+/// A Node is a listening device
+
 #[allow(dead_code)]
 pub struct Node {
   listener: TcpListener,
