@@ -114,3 +114,43 @@ impl Node {
     self.pool.execute(f)
   }
 }
+
+///
+/// State Machine
+/// 
+/// Add desirable states to this struct
+/// Then implmenent them in the match claus at set_state
+pub struct State {
+  pub test: String,
+  pub test2: String
+}
+
+pub enum Action {
+  Test(String),
+  None
+}
+
+pub struct Machine {
+  state: State
+}
+
+impl Machine {
+  pub fn new(state: State) -> Machine {
+    Machine {
+      state
+    }
+  }
+  
+  fn set_state(self, a: Action) -> Machine {
+    match a {
+      Action::Test(v) => Machine { state: State {
+        test: v,
+        ..self.state
+      } },
+      Action::None => Machine { state: State { 
+        ..self.state
+      } }
+    }
+  }
+}
+
